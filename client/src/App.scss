@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: rgba(30, 144, 255, 0.2);
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 550px;
+
+  .hint {
+    margin-top: 7%;
+    color: rgba(30, 144, 255, 0.7);
+  }
+}
