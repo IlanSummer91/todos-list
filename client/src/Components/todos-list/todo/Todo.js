@@ -10,15 +10,15 @@ export function Todo(props) {
   const currentTodoClickedId = useSelector(({todosReducer}) => todosReducer.currentTodoClicked)
   const editRef = useRef(null);
 
-  function deleteDoubleClickHandler(e) {
+  const deleteDoubleClickHandler = (e) => {
     e.stopPropagation();
   }
 
-  function currentTodoClickedHandler() {
+  const currentTodoClickedHandler = () => {
     dispatch(currentTodoClicked(props.todo._id));
   }
 
-  function editContent() {
+  const editContent = () => {
     const content = editRef.current.value;
     if (content !== "") {
       props.todo.content = content;
@@ -31,19 +31,28 @@ export function Todo(props) {
     <div className="todo-component">
       <div className="checkbox-container">
         <input 
-          checked={props.todo.completed} 
-          onChange={() => dispatch(editCompleted(props.todo, mode))} 
+          checked={props.todo.completed} onChange={() => dispatch(editCompleted(props.todo, mode))} 
           type="checkbox" className="checkbox">
         </input>
       </div>
-      <div onDoubleClick={() => currentTodoClickedHandler()} className={"content-and-delete" + (currentTodoClickedId === props.todo._id ? " hidden" : "")}>
-        <label className={props.todo.completed ? " line" : ""} >{props.todo.content}</label>
-        <button className="btn" onClick={() => dispatch(deleteTodo(props.todo._id, mode))} onDoubleClick={(e) => deleteDoubleClickHandler(e)}><i className="fa fa-close"></i></button>
+      <div 
+        onDoubleClick={() => currentTodoClickedHandler()} className={"content-and-delete" + 
+        (currentTodoClickedId === props.todo._id ? " hidden" : "")}>
+        <label 
+          className={props.todo.completed ? " line" : ""}>
+          {props.todo.content}
+        </label>
+        <button 
+          className="btn" onClick={() => dispatch(deleteTodo(props.todo._id, mode))} 
+          onDoubleClick={(e) => deleteDoubleClickHandler(e)}><i className="fa fa-close"></i>
+        </button>
       </div>
       {currentTodoClickedId === props.todo._id ? 
-      <input ref={editRef} autoFocus className="editable-content" defaultValue={props.todo.content} 
-      onKeyUp={(e) => e.code === "Enter" && editContent(e)} onBlur={() => editContent()}></input>
-      : undefined}
+        <input 
+          ref={editRef} autoFocus className="editable-content" defaultValue={props.todo.content} 
+          onKeyUp={(e) => e.code === "Enter" && editContent(e)} onBlur={() => editContent()}>
+        </input>
+        : null}
     </div>
     )
 }

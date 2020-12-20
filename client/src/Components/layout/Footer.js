@@ -10,18 +10,33 @@ export function Footer() {
   const mode = useSelector(({todosReducer}) => todosReducer.mode);
   const anyCompletedTodo = useSelector(({todosReducer}) => todosReducer.anyCompletedTodo);
   
-  return <div className="footer">
-    {remainingTodos !== 1 ? (<div className="todos-count">{remainingTodos} items left</div>) : 
-    (<div className="todos-count">{remainingTodos} item left</div>)}
+  return (
+  <div className="footer">
+    {remainingTodos !== 1 ? 
+      (<div className="todos-count">{remainingTodos} items left</div>) : 
+      (<div className="todos-count">{remainingTodos} item left</div>)}
     <div className="filter-buttons-container">
-      <button className={mode === 'all' ? 'filter-button' : undefined} onClick={() => dispatch(getTodos())}>All</button>
-      <button className={mode === 'active' ? 'filter-button' : undefined} onClick={() => dispatch(getTodos('active'))}>Active</button>
-      <button className={mode === 'completed' ? 'filter-button' : undefined} onClick={() => dispatch(getTodos('completed'))}>Completed</button>
+      <button 
+        className={mode === 'all' ? 'filter-button' : null} 
+        onClick={() => dispatch(getTodos())}>All
+      </button>
+      <button 
+        className={mode === 'active' ? 'filter-button' : null} 
+        onClick={() => dispatch(getTodos('active'))}>Active
+      </button>
+      <button 
+        className={mode === 'completed' ? 'filter-button' : null} 
+        onClick={() => dispatch(getTodos('completed'))}>Completed
+      </button>
     </div>
     <div>
     </div>
     <div className="clear-container">
-      <button className={"clear-button" + (anyCompletedTodo ? " shown" : "")} onClick={() => dispatch(deleteAllCompleted(mode))}>Clear completed</button>
+      <button 
+        className={"clear-button" + (anyCompletedTodo ? " shown" : "")} 
+        onClick={() => dispatch(deleteAllCompleted(mode))}>Clear completed
+      </button>
     </div>
   </div>
+  )
 }

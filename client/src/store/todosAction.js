@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: 'http://localhost:3001/api/todos/',
 })
 
-async function fetchTodos() {
+const fetchTodos = async () => {
   const response = await api.get("/");
   return response.data;
 }

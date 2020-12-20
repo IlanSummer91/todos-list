@@ -5,28 +5,33 @@
   .add-todo-container {
     display: flex;
     border-bottom: 1px solid white;
-    
   }
 
   .toggle-todos {
-    width: 10%;
-    padding-top: 10px;
-    padding-left: 10px;
-  }
-
-  .triangle-down {
-    width: 0;
-    height: 0;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 30px solid white;
-    transition: all 200ms ease-in-out;
-
-    &.transparent {
-      border-top:30px solid rgba($color: white, $alpha: 0.3);
+    display: flex;
+    align-items: center;
+    margin-left: 7px;
+    
+    .checkbox {
+      appearance: none;
+      border-radius: 50%;
+      border: 1px solid white;
+      height: 30px;
+      width: 30px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+  
+      &:focus {
+        outline: none;
+      }
+  
+      &:checked {
+        background-image: url("../../images/tick.png");
+      }
     }
   }
-
+  
   .add-todo {
     width: 90%;
     height: 50px;
@@ -34,6 +39,7 @@
     border: 0;
     background-color: rgb(30, 160, 250);
     color: white;
+    padding-left: 10px;
 
     &::placeholder {
       color: white;
