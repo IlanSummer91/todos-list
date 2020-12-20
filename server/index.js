@@ -11,5 +11,6 @@ app.set("json spaces", 2);
 app.use(cors());
 app.use(express.json());
 app.use("/api/todos", todosRoute);
+app.use("/", express.static(path.join(__dirname, '../client/build')));
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001);
