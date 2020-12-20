@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 const { connect } = require('./db');
 connect();
@@ -13,4 +14,9 @@ app.use(express.json());
 app.use("/api/todos", todosRoute);
 app.use("/", express.static(path.join(__dirname, '../client/build')));
 
-app.listen(process.env.PORT || 3001);
+let port = 3001;
+if(process.env.PORT) {
+    port = process.env.PORT;
+}
+
+app.listen(port);
