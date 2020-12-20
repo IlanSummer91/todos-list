@@ -6,7 +6,7 @@ if(process.env.DB_URL) {
 }
 
 async function connect() {
- await mongoose.connect(`${dbUrl}/${dbName}`, {
+ await mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
